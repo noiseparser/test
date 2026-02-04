@@ -9,6 +9,8 @@ arguments and report that they are not yet implemented.
 import argparse
 import sys
 
+from . import __version__
+
 SUPPORTED_FORMATS = ("apache", "nginx", "json")
 
 
@@ -47,6 +49,12 @@ def build_parser():
     parser = argparse.ArgumentParser(
         prog="logsift",
         description="Parse, filter, and analyze log files.",
+    )
+    parser.add_argument(
+        "-V",
+        "--version",
+        action="version",
+        version=f"%(prog)s {__version__}",
     )
     subparsers = parser.add_subparsers(dest="command", metavar="command")
     subparsers.required = True
